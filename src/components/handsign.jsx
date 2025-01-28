@@ -83,6 +83,48 @@ setFullCurl(callMeGesture, [fp.Finger.Index, fp.Finger.Middle, fp.Finger.Ring]);
 setDirection(callMeGesture, fp.Finger.Thumb, fp.FingerDirection.DiagonalUpLeft);
 setDirection(callMeGesture, fp.Finger.Pinky, fp.FingerDirection.HorizontalRight);
 
+const gestureDescriptions = {
+
+  Victory: "Peace sign - Index and middle fingers in V shape",
+
+  Thumbs_up: "Thumbs up - Thumb pointing upward",
+
+  Open_Palm: "Open palm - All fingers extended",
+
+  Closed_Fist: "Closed fist - All fingers curled",
+
+  Point_Up: "Point up - Index finger extended upward",
+
+  Ok_Sign: "OK sign - Thumb and index forming circle",
+
+  Rock_On: "Rock on - Index and pinky extended",
+
+  Call_Me: "Call me - Thumb and pinky extended"
+
+};
+
+
+
+const emojiRepresentation = {
+
+  victory: '✌️',
+
+  thumbs_up: '👍',
+
+  open_palm: '🖐️',
+
+  closed_fist: '✊',
+
+  point_up: '👆',
+
+  ok_sign: '👌',
+
+  rock_on: '🤟',
+
+  call_me: '🤙'
+
+}
+
 async function runHandpose(detect) {
   await tf.setBackend('webgl');
   await tf.ready();
@@ -162,48 +204,98 @@ function HandSign() {
   }, []);
 
   return (
-    <><div className="bento" id="B0">
-      <h1>HAND GESTURE RECOGNITION SYSTEM</h1>
-    </div>
-    <br />
-    <div className="bentoWrapper">
-      <div className="bento ml-8 w-full" id="B1"><Webcam ref={webcamRef} style={{ borderRadius: '20px' }} />
-        <canvas ref={canvasRef} style={{ position: "fixed" }} />
-      </div>
-      <div className="bento min-h-[150px] flex flex-col p-4" id="B2">
-        <div className="h-8 text-xl font-bold mb-2">
-          {gesture ? gesture.replace(/_/g, ' ').toUpperCase() : "NO GESTURE DETECTED"}
-        </div>
-        <div className="h-12 text-base py-5">
-          {gesture ? `Gesture: ${gesture}` : "Show a hand gesture to begin"}
-        </div>
-        <div className="text-sm text-green-300 mt-auto">
-          {gesture && `Confidence: ${gestureConfidence.toFixed(2)}%`}
-        </div>
-      </div>
-      <div className="bento" id="B3"><div style={{ fontWeight: "bold", fontSize: '20px', textAlign: 'center', paddingBottom: '10px' }}>AVAILABLE GESTURE CLASSES</div>
-        {Object.keys(victoryGesture, thumbsUpGesture, openPalmGesture, closedFistGesture, pointUpGesture, okSignGesture, rockOnGesture, callMeGesture).map(key => (
-          <div key={key} style={{ marginBottom: "3px", fontSize: '15px', padding: '5px', textAlign: 'center' }}>
-            {key.replace(/_/g, ' ')}
-          </div>
-        ))}
-      </div>
-      <div className="bento flex items-center justify-center" id="B4">
-        <div style={{ fontWeight: "bold", fontSize: '20px', marginBottom: "5px", textAlign: 'center' }}>REPRESENTATIONAL EMOJI</div>
-        <div style={{
-          fontSize: "200px",
-          width: "200px",
-          height: "200px",
-          display: "flex",
-          paddingLeft: '50px',
-          alignItems: "center",
-          justifyContent: "center"
-        }}>
-          {gesture ? '👍' : "🫡"} {/* Update as needed */}
-        </div>
-      </div>
-    </div>
-  </>);
-}
 
+    <>
+
+      <div className="bento" id="B0">
+
+        <h1>HAND GESTURE RECOGNITION SYSTEM</h1>
+
+      </div>
+
+      <br />
+
+      <div className="bentoWrapper">
+
+        <div className="bento ml-8 w-full" id="B1">
+
+          <Webcam ref={webcamRef} style={{ borderRadius: '20px' }} />
+
+          <canvas ref={canvasRef} style={{ position: "fixed" }} />
+
+        </div>
+
+        <div className="bento min-h-[150px] flex flex-col p-4" id="B2">
+
+          <div className="h-8 text-xl font-bold mb-2">
+
+            {gesture ? gesture.replace(/_/g, ' ').toUpperCase() : "NO GESTURE DETECTED"}
+
+          </div>
+
+          <div className="h-12 text-base py-5">
+
+            {gesture ? gestureDescriptions[gesture] : "Show a hand gesture to begin"}
+
+          </div>
+
+          <div className="text-sm text-green-300 mt-auto">
+
+            {gesture && `Confidence: ${(gestureConfidence.toFixed(2) * 10).toFixed(0)}%`}
+
+          </div>
+
+        </div>
+
+        <div className="bento" id="B3">
+
+          <div style={{ fontWeight: "bold", fontSize: '20px', textAlign: 'center', paddingBottom: '10px' }}>AVAILABLE GESTURE CLASSES</div>
+
+          {Object.entries(gestureDescriptions).map(([key, value]) => (
+
+            <div key={key} style={{ marginBottom: "3px", fontSize: '15px', padding: '5px', textAlign: 'center' }}>
+
+              {key.replace(/_/g, ' ')}
+
+            </div>
+
+          ))}
+
+        </div>
+
+        <div className="bento flex items-center justify-center" id="B4">
+
+          <div style={{ fontWeight: "bold", fontSize: '20px', marginBottom: "5px", textAlign: 'center' }}>REPRESENTATIONAL EMOJI</div>
+
+          <div style={{
+
+            fontSize: "200px",
+
+            width: "200px",
+
+            height: "200px",
+
+            display: "flex",
+
+            paddingLeft: '50px',
+
+            alignItems: "center",
+
+            justifyContent: "center"
+
+          }}>
+
+            {gesture ? emojiRepresentation[gesture] : "🫡"}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </>
+
+  );
+
+}
 export default HandSign;
