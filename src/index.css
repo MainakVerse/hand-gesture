@@ -1,0 +1,57 @@
+*{
+    font-family: sans-serif;
+  }
+
+  #B0{
+    grid-area: B0;
+    background: linear-gradient(rgb(108, 108, 231),white);
+    padding-left: 45px;
+    border: 2px solid black;
+    grid-column: 1 / span 12;
+    text-align: center;
+  }
+  
+  #B1{
+    grid-area: B1;
+    background: linear-gradient(rgb(76, 76, 199),white);
+    padding-left: 45px;
+    border: 2px solid black;
+  }
+  
+  #B2{
+    grid-area: B2;
+    background: linear-gradient(rgb(76, 76, 199),white);
+    border: 2px solid black;
+  }
+  
+  #B3{
+    grid-area: B3;
+    background: linear-gradient(rgb(76, 76, 199),white);
+    border: 2px solid black;
+    list-style: none;
+  }
+  
+  #B4{
+    grid-area: B4;
+    background: linear-gradient(rgb(76, 76, 199),white);
+    border: 2px solid black;
+  }
+  
+  .bentoWrapper{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-areas: "B1 B2 B2" "B1 B3 B4";
+    grid-gap: 20px;
+  }
+  
+  .bento{
+    border-radius: 12px;
+    padding: 20px;
+  }
+  
+  @media screen and (max-width: 764px){
+    .bentoWrapper{
+      grid-template-columns: 1fr;
+      grid-template-areas: "B1" "B2" "B3" "B4";
+    }
+  }
