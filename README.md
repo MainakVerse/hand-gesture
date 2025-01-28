@@ -1,6 +1,12 @@
 # Hand Gesture Recognition System 
 ### Detect Hand Gestures in quick video calls or just for fun 🫡
 
+## Tech Stack:
+- React JS
+- Tailwind CSS
+- Tensorflow JS
+
+
 ## Screenshots:
 ![image](https://github.com/user-attachments/assets/7632cda0-f892-4015-b5f1-62d80fa2f23a)
 
@@ -12,8 +18,4 @@
 ![Screenshot 2025-01-28 115530](https://github.com/user-attachments/assets/44891212-18a9-4cb5-8e44-cb39358782f2)
 ![Screenshot 2025-01-28 115724](https://github.com/user-attachments/assets/8a9d15ce-5dff-4841-8a15-9c92a224950e)
 
-## Tech Stack:
-- React JS
-- Tailwind CSS
-- Tensorflow JS
 
